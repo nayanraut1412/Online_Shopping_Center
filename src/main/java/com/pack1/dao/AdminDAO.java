@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import com.pack1.model.AdminBean;
 import com.pack1.util.DBconnect;
 
-public class AdminLoginDAO {
+public class AdminDAO {
 
 	public AdminBean login(String name, String pwd)
 	{

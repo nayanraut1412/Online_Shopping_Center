@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.pack1.dao.DeleteProductDAO;
+import com.pack1.dao.ProductDAO;
 
-@WebServlet("/delete")
+@WebServlet("/admin/delete")
 public class DeleteProductServlet extends HttpServlet {
 
 	@Override
@@ -20,21 +20,21 @@ public class DeleteProductServlet extends HttpServlet {
 		HttpSession session=req.getSession(false);
 		if(session==null)
 		{
-			req.getRequestDispatcher("admin/AdminLogin.html").forward(req, resp);
+			req.getRequestDispatcher("/admin/AdminLogin.html").forward(req, resp);
 		}
 		else
 		{
-			int rowCount=new DeleteProductDAO().deleteProduct(req.getParameter("pcode"));
+			int rowCount=new ProductDAO().deleteProduct(req.getParameter("pcode"));
 			
 			if(rowCount>0)
 			{
 				req.setAttribute("msg", "Product Deleted");
-				req.getRequestDispatcher("admin/UpdateProduct.jsp").forward(req, resp);
+				req.getRequestDispatcher("/admin/UpdateProduct.jsp").forward(req, resp);
 			}
 			else
 			{
 				req.setAttribute("msg", "Product Not Deleted");
-				req.getRequestDispatcher("admin/UpdateProduct.jsp").forward(req, resp);
+				req.getRequestDispatcher("/admin/UpdateProduct.jsp").forward(req, resp);
 			
 			}
 		}

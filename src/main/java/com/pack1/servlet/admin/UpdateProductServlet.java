@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.pack1.dao.UpdateProductDAO;
+import com.pack1.dao.ProductDAO;
 import com.pack1.model.ProductBean;
 
-@WebServlet("/update")
+@WebServlet("/admin/update")
 public class UpdateProductServlet extends HttpServlet {
 
 	@Override
@@ -23,7 +23,7 @@ public class UpdateProductServlet extends HttpServlet {
 	
 		if(session==null)
 		{
-			req.getRequestDispatcher("admin/AdminLogin.html").forward(req, resp);
+			req.getRequestDispatcher("/admin/AdminLogin.html").forward(req, resp);
 		}
 		else
 		{
@@ -41,16 +41,16 @@ public class UpdateProductServlet extends HttpServlet {
 			 pb.setPprice(req.getParameter("pprice"));
 			 pb.setPqty(req.getParameter("pqty"));
 		 
-		 int rowCount=new UpdateProductDAO().update(pb);
+		 int rowCount=new ProductDAO().update(pb);
 			
 		 if(rowCount>0) {
 			 req.setAttribute("msg", "Product Inventory updated!!!");
-			 req.getRequestDispatcher("admin/UpdateProduct.jsp").forward(req, resp);
+			 req.getRequestDispatcher("/admin/UpdateProduct.jsp").forward(req, resp);
 		 }
 		 else
 		 {
 			 req.setAttribute("msg", "Product Not Inventory updated!!!");
-			 req.getRequestDispatcher("admin/UpdateProduct.jsp").forward(req, resp);
+			 req.getRequestDispatcher("/admin/UpdateProduct.jsp").forward(req, resp);
 		 }
 		}
 	}

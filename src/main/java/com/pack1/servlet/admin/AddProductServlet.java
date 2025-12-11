@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.pack1.dao.AddProductDAO;
+import com.pack1.dao.ProductDAO;
 import com.pack1.model.ProductBean;
 
-@WebServlet("/addproduct")
+@WebServlet("/admin/addproduct")
 public class AddProductServlet extends HttpServlet {
 
     @Override
@@ -21,7 +21,7 @@ public class AddProductServlet extends HttpServlet {
 
         HttpSession session = req.getSession(false);
         if (session == null) {
-            req.getRequestDispatcher("admin/AdminLogin.html").forward(req, resp);
+            req.getRequestDispatcher("/admin/AdminLogin.html").forward(req, resp);
         } else {
             ProductBean pb = new ProductBean();
             pb.setPcode(req.getParameter("pcode"));
@@ -31,7 +31,7 @@ public class AddProductServlet extends HttpServlet {
             pb.setPqty(req.getParameter("pqty"));
 
             try {
-                int rowCount = new AddProductDAO().addProduct(pb);
+                int rowCount = new ProductDAO().addProduct(pb);
 
                 if (rowCount > 0) {
                     req.setAttribute("msg", "Product Added Successfully");
@@ -39,7 +39,7 @@ public class AddProductServlet extends HttpServlet {
                     req.setAttribute("msg", "Product not Added (no rows inserted)");
                 }
 
-                req.getRequestDispatcher("admin/AddProduct.jsp").forward(req, resp);
+                req.getRequestDispatcher("/admin/AddProduct.jsp").forward(req, resp);
 
             } 
             catch (SQLException e) {

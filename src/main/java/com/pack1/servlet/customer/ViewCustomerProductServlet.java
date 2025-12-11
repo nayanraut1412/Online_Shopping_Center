@@ -1,4 +1,4 @@
-package com.pack1.servlet.admin;
+package com.pack1.servlet.customer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.pack1.dao.ProductDAO;
+import com.pack1.dao.CustomerDAO;
 import com.pack1.model.ProductBean;
 
-@WebServlet("/admin/view1")
-public class ViewProductServlet extends HttpServlet {
+@WebServlet("/customer/view")
+public class ViewCustomerProductServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,14 +22,14 @@ public class ViewProductServlet extends HttpServlet {
 		HttpSession session=req.getSession(false);
 		if(session==null)
 		{
-			req.getRequestDispatcher("/admin/AdminLogin.html").forward(req, resp);
+			req.getRequestDispatcher("/customer/CustomerLogin.html").forward(req, resp);
 		}
 		else
 		{
-			ArrayList<ProductBean> al=new ProductDAO().viewProduct();
+			ArrayList<ProductBean> al=new CustomerDAO().ViewProduct();
 			session.setAttribute("ProductList", al);
-			req.getRequestDispatcher("/admin/ViewProduct.jsp").forward(req, resp);
-		
+			req.getRequestDispatcher("/customer/ViewProduct.jsp").forward(req, resp);
 		}
 	}
+	
 }

@@ -1,4 +1,4 @@
-package com.pack1.servlet.admin;
+package com.pack1.servlet.customer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,37 +13,37 @@ import javax.servlet.http.HttpSession;
 
 import com.pack1.model.ProductBean;
 
-@WebServlet("/admin/edit")
-public class EditProductServlet extends HttpServlet {
+@WebServlet("/customer/buy")
+public class BuyProductServlet extends HttpServlet {
 
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		HttpSession session=req.getSession(false);
+		HttpSession session=req.getSession();
 		if(session==null)
 		{
-			req.getRequestDispatcher("/admin/AdminLogin.html").forward(req, resp);
+			req.getRequestDispatcher("/customer/CustomerLogin.html").forward(req, resp);
 		}
 		else
 		{
 			String pcode=req.getParameter("pcode");
 			ArrayList<ProductBean> al=(ArrayList<ProductBean>)session.getAttribute("ProductList");
-		
 			Iterator<ProductBean> i=al.iterator();
 			ProductBean pb=null;
 			while(i.hasNext())
 			{
 				pb=i.next();
 				if(pcode.equals(pb.getPcode()))
-				{
 					break;
-				}
+			
 			}
-			req.setAttribute("pbitem", pb);
-			req.getRequestDispatcher("/admin/EditProduct.jsp").forward(req, resp);
+			
+			session.setAttribute("pbitem", pb);
+			req.getRequestDispatcher("").forward(req, resp);
+			
+			
+		
 		}
-		
-		
 	}
+	
 }

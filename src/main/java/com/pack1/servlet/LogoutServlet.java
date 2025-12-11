@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/logout")
+@WebServlet("/admin/logout")
 public class LogoutServlet extends HttpServlet {
 
 	@Override
@@ -18,11 +18,11 @@ public class LogoutServlet extends HttpServlet {
 	
 		if(session==null)
 		{
-			req.getRequestDispatcher("admin/AdminLogin.html").forward(req, resp);
+			req.getRequestDispatcher("/admin/AdminLogin.html").forward(req, resp);
 		}
 		else
 		{
-			req.getRequestDispatcher("admin/Logout.jsp").forward(req, resp);
+			req.getRequestDispatcher("/admin/Logout.jsp").forward(req, resp);
 		}
 	
 	}
