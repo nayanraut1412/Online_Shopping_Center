@@ -8,7 +8,7 @@ The backend uses **Servlets, JSP, and JDBC** implemented under a clean **MVC + D
 ---
 
 ## 📁 Project Structure
-
+```
 src/main/java/com.pack1/
 │
 ├── dao/ # DAO Layer – DB operations
@@ -40,7 +40,7 @@ src/main/webapp/
 │ └── web.xml
 │
 └── index.html
-
+```
 
 ---
 
