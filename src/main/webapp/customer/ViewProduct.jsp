@@ -31,7 +31,7 @@
 			{
 				ProductBean pb=i.next();
 				out.println(pb.getPcode()+" "+pb.getPname()+" "+pb.getPcompany()+" "+pb.getPprice()+" "+pb.getPqty()
-				+" " +"<a href='view?pcode="+pb.getPcode()+"'>Buy</a>"+"<br>"
+				+" " +"<a href='pview?pcode="+pb.getPcode()+"'>Buy</a>"+"<br>"
 						);
 			}
 		

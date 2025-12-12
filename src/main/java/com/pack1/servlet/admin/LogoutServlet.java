@@ -1,4 +1,4 @@
-package com.pack1.servlet;
+package com.pack1.servlet.admin;
 
 import java.io.IOException;
 
@@ -18,7 +18,7 @@ public class LogoutServlet extends HttpServlet {
 	
 		if(session==null)
 		{
-			req.getRequestDispatcher("/admin/AdminLogin.html").forward(req, resp);
+			req.getRequestDispatcher("index.html").forward(req, resp);
 		}
 		else
 		{

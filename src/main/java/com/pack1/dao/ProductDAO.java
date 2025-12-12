@@ -34,7 +34,7 @@ public class ProductDAO {
 	    return rowCount;
 	}
 	
-	public int update(ProductBean pb)
+	public int updateProduct(ProductBean pb)
 	{
 		int rowCount=0;
 		try {
@@ -47,7 +47,7 @@ public class ProductDAO {
 		
 			rowCount=pstm.executeUpdate();
 		} catch (Exception e) {
-			e.printStackTrace();// TODO: handle exception
+			e.printStackTrace();
 		}
 		return rowCount;
 	}
@@ -80,6 +80,31 @@ public class ProductDAO {
 		return al;
 	}
 	
+	public ProductBean ProductByCode(String pcode)
+	{
+		ProductBean pb=null;
+		try {
+			Connection con=DBconnect.connect();
+			PreparedStatement pstm=con.prepareStatement("select * from product where pcode=?");
+			pstm.setString(1, pcode);
+			
+			ResultSet rs=pstm.executeQuery();
+			while(rs.next())
+			{
+				pb=new ProductBean();
+				pb.setPcode(rs.getString(1));
+				pb.setPname(rs.getString(2));
+				pb.setPcompany(rs.getString(3));
+				pb.setPprice(rs.getString(4));
+				pb.setPqty(rs.getString(5));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pb;
+	}
+	
 	public int deleteProduct(String pcode)
 	{
 		int rowCount=0;
@@ -90,6 +115,23 @@ public class ProductDAO {
 			pstm.setString(1, pcode);
 			rowCount=pstm.executeUpdate();
 		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowCount;
+	}
+	
+	public int UpdateQty(String pcode, String qty) 
+	{
+		int rowCount=0;
+		try {
+			Connection con=DBconnect.connect();
+			PreparedStatement pstm=con.prepareStatement("update product set pqty=? where pcode=?");
+		
+			pstm.setString(1, qty);
+			pstm.setString(2, pcode);
+			
+			rowCount=pstm.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

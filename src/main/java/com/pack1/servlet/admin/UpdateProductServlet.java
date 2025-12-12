@@ -41,7 +41,7 @@ public class UpdateProductServlet extends HttpServlet {
 			 pb.setPprice(req.getParameter("pprice"));
 			 pb.setPqty(req.getParameter("pqty"));
 		 
-		 int rowCount=new ProductDAO().update(pb);
+		 int rowCount=new ProductDAO().updateProduct(pb);
 			
 		 if(rowCount>0) {
 			 req.setAttribute("msg", "Product Inventory updated!!!");

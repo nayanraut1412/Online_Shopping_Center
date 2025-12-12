@@ -13,13 +13,13 @@ import javax.servlet.http.HttpSession;
 
 import com.pack1.model.ProductBean;
 
-@WebServlet("/customer/buy")
+@WebServlet("/customer/pview")
 public class BuyProductServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		HttpSession session=req.getSession();
+		HttpSession session=req.getSession(false);
 		if(session==null)
 		{
 			req.getRequestDispatcher("/customer/CustomerLogin.html").forward(req, resp);
@@ -39,7 +39,7 @@ public class BuyProductServlet extends HttpServlet {
 			}
 			
 			session.setAttribute("pbitem", pb);
-			req.getRequestDispatcher("").forward(req, resp);
+			req.getRequestDispatcher("/customer/BuyProduct.jsp").forward(req, resp);
 			
 			
 		
