@@ -66,7 +66,7 @@ public class AddProductServlet extends HttpServlet {
                 }
 
                 req.setAttribute("msg", userMsg);
-                req.getRequestDispatcher("admin/AddProduct.jsp").forward(req, resp);
+                req.getRequestDispatcher("/Error.jsp").forward(req, resp);
             }
 
         }
